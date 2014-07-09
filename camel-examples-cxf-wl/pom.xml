@@ -6,10 +6,9 @@
 		<artifactId>camel-examples</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>camel-examples-cxf</artifactId>
+	<artifactId>camel-examples-cxf-wl</artifactId>
 	<packaging>war</packaging>
-	<name>camel-examples-cxf</name>
-
+	<name>camel-examples-cxf-wl</name>
 
 	<properties>
 		<camel-version>2.13.1</camel-version>
@@ -125,19 +124,18 @@
 					</connectors>
 				</configuration>
 			</plugin>
-			  <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
 
 		</plugins>
 
 	</build>
-
 
 </project>
