@@ -19,6 +19,7 @@
        http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
 	<!-- We still need it for loading the CXFServlet -->
 	
+	
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 
 	<bean name="merchantProcessor" class="com.kanjih.camel.processor.MerchantProcessor" />
