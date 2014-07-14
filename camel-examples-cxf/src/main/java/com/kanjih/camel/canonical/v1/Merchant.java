@@ -1,13 +1,20 @@
 package com.kanjih.camel.canonical.v1;
 
+import java.io.Serializable;
+
 /**
  * EC - Estabelecimento Comercial
  * 
  * @author kanjih
  *
  */
-public class Merchant {
+public class Merchant implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8423685456760596144L;
+
 	private Long number;
 	
 	//Merchant Category Codes Segmento de Mercado

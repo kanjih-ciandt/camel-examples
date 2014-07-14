@@ -7,11 +7,25 @@ import org.apache.camel.Processor;
 
 import com.kanjih.camel.canonical.v1.Merchant;
 
-public class MerchantProcessor implements Processor {
+public class MerchantProcessorOld implements Processor {
+	
+	
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		
+		if(exchange.getIn().getHeader("operationName").equals("create")){
+			create(exchange);
+		}else{
+			get(exchange);
+		}
+		
+		
+		
+		
+	}
+
+	private void create(Exchange exchange) {
 		Merchant request = exchange.getIn().getBody(Merchant.class);
 		System.out.println(request);
 		Merchant merchant = new Merchant();
@@ -19,8 +33,16 @@ public class MerchantProcessor implements Processor {
 		
 		merchant.setNumber((long) (Math.random() * 100));
 		merchant.setName(UUID.randomUUID().toString());
-		exchange.getOut().setBody(merchant);
 		
+		
+		exchange.getOut().setBody(merchant);
+	}
+	
+	private void get(Exchange exchange) {
+		Long request = exchange.getIn().getBody(Long.class);
+		
+				
+		exchange.getOut().setBody(request);
 	}
 
 }

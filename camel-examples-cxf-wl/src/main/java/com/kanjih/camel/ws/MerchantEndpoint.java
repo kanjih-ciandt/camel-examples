@@ -6,6 +6,8 @@ import com.kanjih.camel.canonical.v1.Merchant;
 
 @WebService
 public interface MerchantEndpoint {
-    Merchant create(Merchant merchant);    
+    Merchant create(Merchant merchant);
+    
+    Merchant get(Long longNumber);
 
 }

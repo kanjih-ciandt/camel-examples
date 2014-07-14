@@ -13,17 +13,23 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
 	xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xmlns:context="http://www.springframework.org/schema/context" 
 	xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
-       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!-- We still need it for loading the CXFServlet -->
 	
+	<context:annotation-config/> 
 	
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 
 	<bean name="merchantProcessor" class="com.kanjih.camel.processor.MerchantProcessor" />
+	<bean name="merchantProcessorGet" class="com.kanjih.camel.processor.MerchantProcessor" />
 	<bean name="waitTimeProcessor" class="com.kanjih.camel.processor.WaitTimeProcessor" />
+	<bean name="businessMerchant" class="com.kanjih.camel.business.BusinessMerchant" />
 
 	<camelContext xmlns="http://camel.apache.org/schema/spring">
 
@@ -32,8 +38,7 @@
 			<!-- route starts from the cxf webservice, see camel-cxf.xml for details -->
 			<!-- <camel:from uri="cxf:bean:merchantEndpoint" /> -->
 			<camel:from uri="cxf:/merchant?serviceClass=com.kanjih.camel.ws.MerchantEndpoint" />
-			<camel:process ref="merchantProcessor" />
-			<camel:to uri="seda:waitTime" pattern="InOnly" />
+			<camel:process ref="merchantProcessor" />			
 		</camel:route>
 
 		<camel:route>
