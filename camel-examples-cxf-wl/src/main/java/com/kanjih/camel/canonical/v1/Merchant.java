@@ -2,12 +2,17 @@ package com.kanjih.camel.canonical.v1;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+
 /**
  * EC - Estabelecimento Comercial
  * 
  * @author kanjih
  *
  */
+@XmlAccessorType (XmlAccessType.FIELD)
 public class Merchant implements Serializable{
 	
 	/**
@@ -15,6 +20,7 @@ public class Merchant implements Serializable{
 	 */
 	private static final long serialVersionUID = -8423685456760596144L;
 
+	@XmlElement(required=true)
 	private Long number;
 	
 	//Merchant Category Codes Segmento de Mercado

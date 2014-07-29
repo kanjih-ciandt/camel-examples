@@ -1,7 +1,5 @@
 package com.kanjih.camel.processor;
 
-import java.util.UUID;
-
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ public class MerchantProcessor implements Processor {
 		merchant.setMcc((long) (Math.random() * 200));
 		
 		merchant.setNumber((long) (Math.random() * 100));
-		merchant.setName(UUID.randomUUID().toString());
+		merchant.setName("Hello "+request.getName());
 		
 		businessMerchant.put(merchant);
 		exchange.getOut().setBody(merchant);

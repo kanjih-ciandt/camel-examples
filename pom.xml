@@ -8,5 +8,6 @@
   <modules>
   	<module>camel-examples-cxf</module>
   	<module>camel-examples-cxf-wl</module>
+  	<module>camel-example-contract-first</module>
   </modules>
 </project>
