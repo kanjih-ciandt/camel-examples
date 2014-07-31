@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:ws="http://ws.camel.kanjih.com/">
+	<soapenv:Header>
+		<wsse:Security soapenv:mustUnderstand="1"
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+			<wsu:Timestamp wsu:Id="TS-9687643671AC63968B14068493825749">
+				<wsu:Created>2014-07-31T23:29:42Z</wsu:Created>
+				<wsu:Expires>2014-08-01T01:09:42Z</wsu:Expires>
+			</wsu:Timestamp>
+			<wsse:UsernameToken wsu:Id="UsernameToken-9687643671AC63968B14068493825748">
+				<wsse:Username>jim</wsse:Username>
+				<wsse:Password
+					Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">jimpassword</wsse:Password>
+				<wsse:Nonce
+					EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">x+Z/+m8f1XYk3dvCXK+6hA==</wsse:Nonce>
+				<wsu:Created>2014-07-31T23:29:42.574Z</wsu:Created>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soapenv:Header>
+	<soapenv:Body>
+		<ws:create>
+			<!--Optional: -->
+			<arg0>
+				<!--Optional: -->
+				<mcc>1</mcc>
+				<!--Optional: -->
+				<name>1</name>
+				<!--Optional: -->
+				<number>1</number>
+			</arg0>
+		</ws:create>
+	</soapenv:Body>
+</soapenv:Envelope>

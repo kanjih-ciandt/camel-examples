@@ -7,7 +7,7 @@ import org.apache.camel.Processor;
 
 import com.kanjih.camel.canonical.v1.Merchant;
 
-public class MerchantProcessorOld implements Processor {
+public class MerchantProcessor implements Processor {
 	
 	
 
