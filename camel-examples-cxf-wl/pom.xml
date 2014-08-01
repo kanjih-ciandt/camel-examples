@@ -94,6 +94,12 @@
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 			<version>${cxf-version}</version>
 		</dependency>
+		 <!-- ws-security -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-ws-security</artifactId>
+            <version>${cxf-version}</version>
+        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

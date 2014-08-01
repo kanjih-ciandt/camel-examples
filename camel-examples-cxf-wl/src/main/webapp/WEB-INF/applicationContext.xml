@@ -24,6 +24,8 @@
 	
 	<context:annotation-config/> 
 	
+	<import resource="camel-cxf.xml" />
+	
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 
 	<bean name="merchantProcessor" class="com.kanjih.camel.processor.MerchantProcessor" />
@@ -35,9 +37,9 @@
 
 
 		<camel:route>
-			<!-- route starts from the cxf webservice, see camel-cxf.xml for details -->
-			<!-- <camel:from uri="cxf:bean:merchantEndpoint" /> -->
-			<camel:from uri="cxf:/merchant?serviceClass=com.kanjih.camel.ws.MerchantEndpoint" />
+			<!-- route starts from the cxf webservice, see camel-cxf.xml for details -->			
+			<!-- <camel:from uri="cxf:/merchant?serviceClass=com.kanjih.camel.ws.MerchantEndpoint" /> -->
+			<camel:from uri="cxf:bean:merchantEndpoint" />
 			<camel:process ref="merchantProcessor" />			
 		</camel:route>
 
