@@ -1,17 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.kanjih.camel</groupId>
-		<artifactId>camel-examples</artifactId>
-		<version>0.0.1</version>
-	</parent>
-	<artifactId>camel-examples-cxf</artifactId>
-	<packaging>war</packaging>
-	<name>camel-examples-cxf</name>
-
-
-	<properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.kanjih.camel</groupId>
+    <artifactId>camel-examples-eai</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <artifactId>camel-examples-eai-integrador</artifactId>
+  <packaging>war</packaging>
+  
+  <properties>
 		<camel-version>2.13.1</camel-version>
 		<cxf-version>2.7.11</cxf-version>
 		<spring-version>4.0.5.RELEASE</spring-version>
@@ -42,6 +39,11 @@
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-test-spring</artifactId>
 			<scope>test</scope>
+			<version>${camel-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jackson</artifactId>
 			<version>${camel-version}</version>
 		</dependency>
 		<dependency>
@@ -95,17 +97,19 @@
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 			<version>${cxf-version}</version>
 		</dependency>
-		 <!-- ws-security -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-ws-security</artifactId>
-            <version>${cxf-version}</version>
-        </dependency>
+		
+		<!-- ws-security -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-ws-security</artifactId>
+			<version>${cxf-version}</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.oracle.coherence</groupId>
 			<artifactId>coherence</artifactId>
@@ -130,25 +134,47 @@
 				<configuration>
 					<connectors>
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>8808</port>
+							<port>8804</port>
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
 				</configuration>
 			</plugin>
-			  <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			
+			<!-- CXF wsdl2java generator, will plugin to the compile goal -->
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf-version}</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/jogoDoBichoSoap.wsdl</wsdl>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 		</plugins>
 
 	</build>
-
-
 </project>

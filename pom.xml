@@ -10,5 +10,6 @@
   	<module>camel-examples-cxf-wl</module>
   	<module>camel-examples-rest</module>
   	<module>camel-examples-cfirst</module>
+  	<module>camel-examples-eai</module>
   </modules>
 </project>

@@ -21,9 +21,6 @@ public class MerchantProcessor implements Processor {
 			get(exchange);
 		}
 		
-		
-		
-		
 	}
 
 	private void create(Exchange exchange) {
