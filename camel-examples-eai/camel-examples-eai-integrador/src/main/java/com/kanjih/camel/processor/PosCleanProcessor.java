@@ -5,11 +5,11 @@ import org.apache.camel.Processor;
 
 import com.kanjih.camel.ws.Animais;
 
-public class CleanProcessor implements Processor {
+public class PosCleanProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		exchange.getIn().setBody(new Object[0]);		
+		System.out.println(exchange);
 		
 	}
 

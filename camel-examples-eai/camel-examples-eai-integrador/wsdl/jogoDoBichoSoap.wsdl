@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.camel.kanjih.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="JogoBichoEndpointService" targetNamespace="http://ws.camel.kanjih.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.camel.kanjih.com/" elementFormDefault="unqualified" targetNamespace="http://ws.camel.kanjih.com/" version="1.0">
+
+  <xs:element name="abrirJogo" type="tns:abrirJogo"/>
+
+  <xs:element name="abrirJogoResponse" type="tns:abrirJogoResponse"/>
+
+  <xs:element name="animaisJogo" type="tns:animaisJogo"/>
+
+  <xs:element name="animaisJogoResponse" type="tns:animaisJogoResponse"/>
+
+  <xs:element name="apostar" type="tns:apostar"/>
+
+  <xs:element name="apostarResponse" type="tns:apostarResponse"/>
+
+  <xs:element name="fecharAposta" type="tns:fecharAposta"/>
+
+  <xs:element name="fecharApostaResponse" type="tns:fecharApostaResponse"/>
+
+  <xs:element name="informarNumerosSortiados" type="tns:informarNumerosSortiados"/>
+
+  <xs:element name="informarNumerosSortiadosResponse" type="tns:informarNumerosSortiadosResponse"/>
+
+  <xs:element name="listarJogos" type="tns:listarJogos"/>
+
+  <xs:element name="listarJogosResponse" type="tns:listarJogosResponse"/>
+
+  <xs:element name="procurarPorAnimal" type="tns:procurarPorAnimal"/>
+
+  <xs:element name="procurarPorAnimalResponse" type="tns:procurarPorAnimalResponse"/>
+
+  <xs:element name="resultadoJogo" type="tns:resultadoJogo"/>
+
+  <xs:element name="resultadoJogoResponse" type="tns:resultadoJogoResponse"/>
+
+  <xs:complexType name="informarNumerosSortiados">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="informarNumerosSortiadosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="procurarPorAnimal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="procurarPorAnimalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:animais"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="animais">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nomeAnimal" type="xs:string"/>
+      <xs:element name="numero" type="xs:int"/>
+      <xs:element name="primeiraDezena" type="xs:int"/>
+      <xs:element name="quartaDezena" type="xs:int"/>
+      <xs:element name="segundaDezena" type="xs:int"/>
+      <xs:element name="terceiraDezena" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="abrirJogo">
+    <xs:sequence>
+      <xs:element name="idJogo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="abrirJogoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="apostar">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="apostarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="resultadoJogo">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="resultadoJogoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="animaisJogo">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="animaisJogoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:jogoBicho"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="jogoBicho">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="animaisJogo" nillable="true" type="tns:animais"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listarJogos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listarJogosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fecharAposta">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="fecharApostaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="informarNumerosSortiadosResponse">
+    <wsdl:part element="tns:informarNumerosSortiadosResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="fecharAposta">
+    <wsdl:part element="tns:fecharAposta" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listarJogosResponse">
+    <wsdl:part element="tns:listarJogosResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="abrirJogoResponse">
+    <wsdl:part element="tns:abrirJogoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="fecharApostaResponse">
+    <wsdl:part element="tns:fecharApostaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resultadoJogoResponse">
+    <wsdl:part element="tns:resultadoJogoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listarJogos">
+    <wsdl:part element="tns:listarJogos" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="abrirJogo">
+    <wsdl:part element="tns:abrirJogo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="animaisJogoResponse">
+    <wsdl:part element="tns:animaisJogoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="procurarPorAnimal">
+    <wsdl:part element="tns:procurarPorAnimal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="procurarPorAnimalResponse">
+    <wsdl:part element="tns:procurarPorAnimalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="informarNumerosSortiados">
+    <wsdl:part element="tns:informarNumerosSortiados" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="apostar">
+    <wsdl:part element="tns:apostar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="animaisJogo">
+    <wsdl:part element="tns:animaisJogo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="apostarResponse">
+    <wsdl:part element="tns:apostarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resultadoJogo">
+    <wsdl:part element="tns:resultadoJogo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="JogoBichoEndpoint">
+    <wsdl:operation name="informarNumerosSortiados">
+      <wsdl:input message="tns:informarNumerosSortiados" name="informarNumerosSortiados">
+    </wsdl:input>
+      <wsdl:output message="tns:informarNumerosSortiadosResponse" name="informarNumerosSortiadosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="procurarPorAnimal">
+      <wsdl:input message="tns:procurarPorAnimal" name="procurarPorAnimal">
+    </wsdl:input>
+      <wsdl:output message="tns:procurarPorAnimalResponse" name="procurarPorAnimalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="abrirJogo">
+      <wsdl:input message="tns:abrirJogo" name="abrirJogo">
+    </wsdl:input>
+      <wsdl:output message="tns:abrirJogoResponse" name="abrirJogoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="apostar">
+      <wsdl:input message="tns:apostar" name="apostar">
+    </wsdl:input>
+      <wsdl:output message="tns:apostarResponse" name="apostarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resultadoJogo">
+      <wsdl:input message="tns:resultadoJogo" name="resultadoJogo">
+    </wsdl:input>
+      <wsdl:output message="tns:resultadoJogoResponse" name="resultadoJogoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="animaisJogo">
+      <wsdl:input message="tns:animaisJogo" name="animaisJogo">
+    </wsdl:input>
+      <wsdl:output message="tns:animaisJogoResponse" name="animaisJogoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarJogos">
+      <wsdl:input message="tns:listarJogos" name="listarJogos">
+    </wsdl:input>
+      <wsdl:output message="tns:listarJogosResponse" name="listarJogosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fecharAposta">
+      <wsdl:input message="tns:fecharAposta" name="fecharAposta">
+    </wsdl:input>
+      <wsdl:output message="tns:fecharApostaResponse" name="fecharApostaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="JogoBichoEndpointServiceSoapBinding" type="tns:JogoBichoEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="informarNumerosSortiados">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="informarNumerosSortiados">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="informarNumerosSortiadosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="abrirJogo">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="abrirJogo">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="abrirJogoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="procurarPorAnimal">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="procurarPorAnimal">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="procurarPorAnimalResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="apostar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="apostar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="apostarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resultadoJogo">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="resultadoJogo">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="resultadoJogoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="animaisJogo">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="animaisJogo">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="animaisJogoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="fecharAposta">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="fecharAposta">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="fecharApostaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarJogos">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listarJogos">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listarJogosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="JogoBichoEndpointService">
+    <wsdl:port binding="tns:JogoBichoEndpointServiceSoapBinding" name="JogoBichoEndpointPort">
+      <soap:address location="http://localhost:8808/jogoDoBichoSoap"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

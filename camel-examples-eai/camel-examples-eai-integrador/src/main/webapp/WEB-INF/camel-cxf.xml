@@ -29,13 +29,16 @@
 	<!-- Endpoint of MockService for Airline A -->
 	<cxf:cxfEndpoint id="jogoBichoSoapEndpoint"
 		address="http://localhost:8808/jogoDoBichoSoap/" serviceClass="com.kanjih.camel.ws.JogoBichoEndpoint"
-		wsdlURL="wsdl/jogoDoBichoSoap.wsdl">
-		<cxf:properties>
-			<!-- enable sending the stack trace back to client; the default value 
-				is false -->
-			<entry key="faultStackTraceEnabled" value="true" />
-			<entry key="dataFormat" value="PAYLOAD" />
-		</cxf:properties>
+		wsdlURL="wsdl/jogoDoBichoSoap.wsdl" >
+		<cxf:properties>    
+    		<entry key="faultStackTraceEnabled" value="true" />
+    		<entry key="exceptionMessageCauseEnabled" value="true" />    
+  		</cxf:properties>		
+	</cxf:cxfEndpoint>
+	
+	<cxf:cxfEndpoint id="errorSoapEndpoint"
+		address="http://localhost:8808/jogoDoBichoSoap/" serviceClass="com.kanjih.camel.ws.JogoBichoEndpoint"
+		wsdlURL="wsdl/jogoDoBichoSoap.wsdl" >				
 	</cxf:cxfEndpoint>
 
 

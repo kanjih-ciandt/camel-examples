@@ -34,6 +34,9 @@
 
 	<bean name="delegateProcessor" class="com.kanjih.camel.processor.DelegateProcessor" />
 	<bean name="aposProcuraNomeProcessor" class="com.kanjih.camel.processor.AposProcuraNomeProcessor" />
+	<bean name="cleanProcessor" class="com.kanjih.camel.processor.CleanProcessor" />
+	<bean name="posCleanProcessor" class="com.kanjih.camel.processor.PosCleanProcessor" />
+
 
 
 
@@ -43,45 +46,51 @@
 		<camel:package>
 			com.kanjih.camel.ws
 		</camel:package>
-		
+
 		<camel:dataFormats>
 			<camel:json id="jack" library="Jackson" />
 		</camel:dataFormats>
 
-		<camel:onException>
-			<camel:exception>java.lang.Exception</camel:exception>
-			<camel:exception>java.lang.RuntimeException</camel:exception>
-			<camel:exception>org.apache.camel.CamelExchangeException</camel:exception>
-			<camel:setHeader headerName="operationName">
-				<camel:constant>animaisJogo</camel:constant>
-			</camel:setHeader>
-			<camel:log message="Chamada de Excp" />
-			<camel:to uri="cxf:bean:jogoBichoSoapEndpoint" />
-		</camel:onException>
+
 
 		<camel:route>
 			<camel:from uri="cxfrs:bean:integradorServer" />
-			<camel:log message="Iniciando" />
-			<camel:process ref="delegateProcessor" />
-			<camel:log message="Antes da primeira Chamada" />
-			<camel:setHeader headerName="operationName">
-				<camel:constant>procurarPorAnimal</camel:constant>
-			</camel:setHeader>
-			<camel:to uri="cxf:bean:jogoBichoSoapEndpoint" />
-			<camel:process ref="aposProcuraNomeProcessor" />
-			<camel:choice>
-				<camel:when>
-					<simple>${in.header.ACTION}</simple>
-					<camel:log message="Foi invocado Cobra" />
+			<camel:doTry>
+				<camel:log message="Iniciando" />
+				<camel:process ref="delegateProcessor" />
+				<camel:log message="Antes da primeira Chamada" />
+				<camel:setHeader headerName="operationName">
+					<camel:constant>procurarPorAnimal</camel:constant>
+				</camel:setHeader>
+				<camel:to uri="cxf:bean:jogoBichoSoapEndpoint" />
+				<camel:process ref="aposProcuraNomeProcessor" />
+				<camel:choice>
+					<camel:when>
+						<simple>${in.header.ACTION}</simple>
+						<camel:log message="Foi invocado Cobra" />
+						<camel:setHeader headerName="operationName">
+							<camel:constant>procurarPorAnimal</camel:constant>
+						</camel:setHeader>
+						<camel:to uri="cxf:bean:jogoBichoSoapEndpoint" />
+					</camel:when>
+				</camel:choice>
+				<camel:doCatch>
+					<camel:exception>java.lang.Exception</camel:exception>
+					<camel:exception>java.lang.RuntimeException</camel:exception>
+					<camel:exception>java.lang.NullPointerException</camel:exception>
+					<camel:exception>org.apache.camel.CamelExchangeException</camel:exception>
 					<camel:setHeader headerName="operationName">
-						<camel:constant>procurarPorAnimal</camel:constant>
+						<camel:constant>animaisJogo</camel:constant>
 					</camel:setHeader>
-					<camel:to uri="cxf:bean:jogoBichoSoapEndpoint" />
-				</camel:when>
-			</camel:choice>
+					<camel:log message="Chamada de Excp" />
+					<camel:process ref="cleanProcessor" />
+					<camel:to uri="cxf:bean:errorSoapEndpoint" />
+					<camel:process ref="posCleanProcessor" />
+				</camel:doCatch>
+			</camel:doTry>
 			<camel:marshal ref="jack" />
 		</camel:route>
-		
+
 	</camelContext>
 
 </beans>
